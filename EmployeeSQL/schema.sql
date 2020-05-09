@@ -1,4 +1,4 @@
---dept_no...tables w/o FK first!
+--First run...tables w/o FK first!
 CREATE TABLE departments (
     dept_no VARCHAR,
     dept_name VARCHAR,
@@ -10,19 +10,18 @@ CREATE TABLE titles (
     title VARCHAR,
     PRIMARY KEY (title_id)
 );
-
+--Second run
 CREATE TABLE dept_emp (
     emp_no INTEGER,
     dept_no VARCHAR, 
-    PRIMARY KEY (emp_no),
     FOREIGN KEY (dept_no) REFERENCES departments(dept_no)
 );
 
 CREATE TABLE dept_manager (
     dept_no VARCHAR,
     emp_no INTEGER,
-    PRIMARY KEY (dept_no),
-    PRIMARY KEY (emp_no),
+ --   PRIMARY KEY (dept_no),
+  --  PRIMARY KEY (emp_no),
     FOREIGN KEY (dept_no) REFERENCES departments(dept_no)
 );
 
@@ -38,9 +37,10 @@ CREATE TABLE employees (
     FOREIGN KEY (emp_title_id) REFERENCES titles(title_id)
 );
 
+--Run separately, third run 
 CREATE TABLE salaries (
     emp_no INTEGER,
     salary INTEGER,
     PRIMARY KEY (emp_no),
-    FOREIGN KEY (emp_no) REFERENCES employees.emp_no
+    FOREIGN KEY (emp_no) REFERENCES employees(emp_no)
 );
